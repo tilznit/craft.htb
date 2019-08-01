@@ -53,3 +53,4 @@ Nmap done: 1 IP address (1 host up) scanned in 45.37 seconds
 ### Lessons Learned
 - learned a lot about modules, packages, and `import` in python. This was nice.
 - I read almost every bit of code in this project looking for ways to leak data. It helped out a ton.
+- I am starting to develop a good methodology for note-taking. A bit of refining is needed, but I like how I can organizedata in cherrytree.
