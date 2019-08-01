@@ -50,3 +50,6 @@ Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
 Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
 Nmap done: 1 IP address (1 host up) scanned in 45.37 seconds
 ```
+### Lessons Learned
+- learned a lot about modules, packages, and `import` in python. This was nice.
+- I read almost every bit of code in this project looking for ways to leak data. It helped out a ton.
