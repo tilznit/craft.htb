@@ -1,5 +1,8 @@
 # craft
 ### Write up for the craft machine from hackthebox
+
+I fully explored a couple of rabbitholes that led nowhere; and that's okay as I am learning what rabbitholes look like (maybe... feel like?) , and learning to trust my instincts developing my skillset.
+
 nmaps
 ```
 nmap -p- -sT --min-rate=10000 -oN alltcp.nmap 10.10.10.110
