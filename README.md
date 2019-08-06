@@ -1,4 +1,4 @@
-# craft
+# craft.htb
 ### Write up for the craft machine from hackthebox
 
 I fully explored a couple of rabbitholes that led nowhere; and that's okay as I am learning what rabbitholes look like (maybe... feel like?) , and learning to trust my instincts developing my skillset.
