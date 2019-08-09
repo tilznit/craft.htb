@@ -83,10 +83,20 @@ ebachman
 dinesh
 gilfoyle
 ```
+These are characters from [Silicon Valley](https://en.wikipedia.org/wiki/Silicon_Valley_(TV_series)).
+
 I look through each one's commits and issues. Dinesh raised an issue about a bogus abv value that had interesting data. 
 ![Screenshot from 2019-07-30 20-10-33](https://user-images.githubusercontent.com/46615118/62796534-2253e280-ba9f-11e9-94d7-bb909b8b89a7.jpg)
 
-`Can you do it yourself and commit? I'll test it later?` Raises all sorts of red flags for me. I tried the `curl` command and got a `404` as expected. Investigating Dinesh's contributions reveal a great deal. In commit `c414b
+`Can you do it yourself and commit? I'll test it later?` Raises all sorts of red flags for me. I tried the `curl` command and got a `404` as expected. Investigating Dinesh's contributions reveal a great deal.
+
+![Screenshot from 2019-08-01 20-41-54](https://user-images.githubusercontent.com/46615118/62798022-e15dcd00-baa2-11e9-897e-94cca92d22ef.jpg)
+
+In commit `c414b16057` dinesh added a "fix". Unfortunately he used the `eval()` function in his python. The `eval()` function conveniently allows us to execute arbitrary strings as python code. There was a great [presentation](https://www.youtube.com/watch?v=ZVx2Sxl3B9c) by [Mark Baggett](https://twitter.com/markbaggett?lang=en) about the dangers of this function at the past [Kringlecon](https://holidayhackchallenge.com/2018/).
+
+We've found the vulnerability; how do we exploit it? Look no further than commit `10e3ba4f0a`. Here we have a test script written by Dinesh that exposes his credentials.
+
+
 
 ### Lessons Learned
 - learned a lot about modules, packages, and `import` in python. This was nice.
