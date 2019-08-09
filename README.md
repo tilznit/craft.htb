@@ -6,7 +6,7 @@ This has been my favorite box so far, mainly due to it's realism. The path to ro
 
 We start off by enumerating the hell out of everything that we're given and find a [Gogs](https://gogs.io) repo that leaks credentials via commit history. We also find sloppy coding practices and are able to exploit them with the creds we found in order to get a reverse shell. We are jailed, but can upload our own modified versions of scripts we find on the box in order to steal more creds. Logging back into Gogs with one of the new creds we find a private repo with ssh keys and app info that allows us to own root ... if you read the app documentation.
 
-###Scan and Basic Recon
+### Scan and Basic Recon
 
 I ran an nmap scan on all TCP/UDP ports. The UDP scan came back empty. The TCP scan showed
 ```
@@ -63,7 +63,7 @@ We see https, ssh, and a weird ssh thing I have never seen before on `6022/tcp`.
 
 I started gobusting/dirb'ing `https://10.10.10.110/` at this point but it kept erroring out. I assume it's user error, but before attemting to fix, I visit `https://10.10.10.110/` in a browser and found the following:
 
-
+![Screenshot from 2019-07-27 12-14-22](https://user-images.githubusercontent.com/46615118/62792345-af456e80-ba94-11e9-82a7-f3a89d926a46.png)
 
 ### Lessons Learned
 - learned a lot about modules, packages, and `import` in python. This was nice.
