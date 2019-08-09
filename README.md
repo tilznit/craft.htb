@@ -1,5 +1,6 @@
 # craft.htb
 ### Write up for the craft machine from hackthebox
+<img width="302" alt="Screen Shot 2019-08-09 at 9 20 32 AM" src="https://user-images.githubusercontent.com/46615118/62785902-283dc980-ba87-11e9-9973-13ed7359cdf5.png">
 
 I fully explored a couple of rabbitholes that led nowhere; and that's okay as I am learning what rabbitholes look like (maybe... feel like?) , and learning to trust my instincts developing my skillset.
 
@@ -60,4 +61,4 @@ Nmap done: 1 IP address (1 host up) scanned in 45.37 seconds
 
 <img width="540" alt="Screen Shot 2019-08-09 at 9 18 23 AM" src="https://user-images.githubusercontent.com/46615118/62785900-283dc980-ba87-11e9-8fec-4ace2403efbf.png">
 <img width="540" alt="Screen Shot 2019-08-09 at 9 19 04 AM" src="https://user-images.githubusercontent.com/46615118/62785901-283dc980-ba87-11e9-815c-fdb39dbce1af.png">
-<img width="302" alt="Screen Shot 2019-08-09 at 9 20 32 AM" src="https://user-images.githubusercontent.com/46615118/62785902-283dc980-ba87-11e9-9973-13ed7359cdf5.png">
+
