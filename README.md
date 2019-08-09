@@ -93,12 +93,29 @@ I look through each one's commits and issues. Dinesh raised an issue about a bog
 
 ![Screenshot from 2019-08-01 20-41-54](https://user-images.githubusercontent.com/46615118/62798022-e15dcd00-baa2-11e9-897e-94cca92d22ef.jpg)
 
-In commit `c414b16057` dinesh added a "fix". Unfortunately he used the `eval()` function in his python. The `eval()` function conveniently allows us to execute arbitrary strings as python code. There was a great [presentation](https://www.youtube.com/watch?v=ZVx2Sxl3B9c) by [Mark Baggett](https://twitter.com/markbaggett?lang=en) about the dangers of this function at the past [Kringlecon](https://holidayhackchallenge.com/2018/).
+In commit `c414b16057` Dinesh added a "fix" to the `brew.py` endpoint. Unfortunately he used the `eval()` function in his python. The `eval()` function conveniently allows us to execute arbitrary strings as python code. 
 
-We've found the vulnerability; how do we exploit it? Look no further than commit `10e3ba4f0a`. Here we have a test script written by Dinesh that exposes his credentials.
+```python
+def post(self):
+  """
+  Creates a new brew entry
+  """
+  
+  # make sure the ABV value is sane.
+  if eval('%s > 1' % request.json['abv'):
+    return "ABV must be a decimal value less than 1.0", 400
+  else:
+    create_brew(request_json)
+    return None, 201
+```   
 
+There was a great [presentation](https://www.youtube.com/watch?v=ZVx2Sxl3B9c) by [Mark Baggett](https://twitter.com/markbaggett?lang=en) about the dangers of this function at the past [Kringlecon](https://holidayhackchallenge.com/2018/).
 
+I've found a vulnerability; how do I exploit it? Look no further than commit `10e3ba4f0a`. Here we have a test.py script written by Dinesh that both exposes his credentials and interacts with the api. He removed the creds in a later fix, but [git remembers everything](https://www.google.com/search?client=firefox-b-1-d&q=finding+secrets+in+github).
 
+### Gaining Access
+
+I had previously downloaded the repo to my machine
 ### Lessons Learned
 - learned a lot about modules, packages, and `import` in python. This was nice.
 - I read almost every bit of code in this project looking for ways to leak data. It helped out a ton.
