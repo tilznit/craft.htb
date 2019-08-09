@@ -72,7 +72,17 @@ Clicking the links for api and the git icon return `404 Not Found` errors. Hover
 
 I poke around the api, and found a login point:
 
+![Screenshot from 2019-07-30 19-38-25](https://user-images.githubusercontent.com/46615118/62795959-9097a580-ba9d-11e9-8821-2610155a7a0d.png)
 
+I need creds. Further exploration of the api reveals nothing obviously exploitable. Lets look at the repo in `gogs.craft.htb`. As luck would have it (pun), on `gogs.craft.htb/explore/users` I found four users:
+
+```
+administrator
+ebachman
+dinesh
+gilfoyle
+```
+I look through each one's commits and issues. Dinesh raised an issue about a bogus abv value that had interesting data. 
 
 ### Lessons Learned
 - learned a lot about modules, packages, and `import` in python. This was nice.
