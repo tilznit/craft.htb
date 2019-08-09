@@ -89,7 +89,7 @@ I look through each one's commits and issues. Dinesh raised an issue about a bog
 
 ![Screenshot from 2019-07-30 20-10-33](https://user-images.githubusercontent.com/46615118/62796534-2253e280-ba9f-11e9-94d7-bb909b8b89a7.jpg)
 
-"Can you do it yourself and commit? I'll test it later." Raises all sorts of red flags for me. I tried the `curl` command and got a `404` as expected. Investigating Dinesh's contributions reveals a great deal of useful info.
+**"Can you do it yourself and commit? I'll test it later."** Raises all sorts of red flags for me. I tried the `curl` command and got a `404` as expected. Investigating Dinesh's contributions reveals a great deal of useful info.
 
 ![Screenshot from 2019-08-01 20-41-54](https://user-images.githubusercontent.com/46615118/62798022-e15dcd00-baa2-11e9-897e-94cca92d22ef.jpg)
 
