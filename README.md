@@ -68,6 +68,7 @@ I started gobusting/dirb'ing `https://10.10.10.110/` at this point but it kept t
 Clicking the links for api and the git icon return `404 Not Found` errors. Hovering over the links we find 2 new subdomains: `api.craft.htb` and `gogs.craft.htb`. Adding those to `/etc/hosts` gets me past the 404 errors.
 
 ![Screenshot from 2019-07-27 12-13-44](https://user-images.githubusercontent.com/46615118/62795233-ec612f00-ba9b-11e9-9d97-f67ed21e043e.png)
+
 ![Screenshot from 2019-07-27 12-13-48](https://user-images.githubusercontent.com/46615118/62795246-f3883d00-ba9b-11e9-93b4-06321d2ef3b6.png)
 
 I poke around the api, and found a login point:
@@ -83,6 +84,9 @@ dinesh
 gilfoyle
 ```
 I look through each one's commits and issues. Dinesh raised an issue about a bogus abv value that had interesting data. 
+![Screenshot from 2019-07-30 20-10-33](https://user-images.githubusercontent.com/46615118/62796534-2253e280-ba9f-11e9-94d7-bb909b8b89a7.jpg)
+
+`Can you do it yourself and commit? I'll test it later?` Raises all sorts of red flags for me. I tried the `curl` command and got a `404` as expected. Investigating Dinesh's contributions reveal a great deal. In commit `c414b
 
 ### Lessons Learned
 - learned a lot about modules, packages, and `import` in python. This was nice.
