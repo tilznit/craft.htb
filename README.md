@@ -93,7 +93,7 @@ I look through all commits and issues. Dinesh raised an issue about a bogus abv 
 
 ![Screenshot from 2019-08-01 20-41-54](https://user-images.githubusercontent.com/46615118/62798022-e15dcd00-baa2-11e9-897e-94cca92d22ef.jpg)
 
-In commit `c414b16057` Dinesh added a "fix" to the `brew.py` endpoint. Unfortunately he used the `eval` function in his python. The `eval` function conveniently allows us to execute arbitrary strings as python code. 
+In commit `c414b16057` Dinesh added a "fix" to the `brew.py` endpoint. Unfortunately he used the `eval` function in his python. The `eval` function conveniently allows for execution of arbitrary strings as python code. 
 
 ```python
 def post(self):
