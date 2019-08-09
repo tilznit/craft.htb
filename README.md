@@ -2,7 +2,9 @@
 ### Write up for the craft machine from hackthebox
 <img width="302" alt="Screen Shot 2019-08-09 at 9 20 32 AM" src="https://user-images.githubusercontent.com/46615118/62785902-283dc980-ba87-11e9-9973-13ed7359cdf5.png">
 
-I fully explored a couple of rabbitholes that led nowhere; and that's okay as I am learning what rabbitholes look like (maybe... feel like?) , and learning to trust my instincts developing my skillset.
+This has been my favorite box so far, mainly due to it's realism and the way it forced me to understand how enumeration (enumerate EVERYTHING) can make things so much easier for you as a penetration tester. The path to root was logical once you understood what was going on with the app and how to interact with it in order to get the output that you desire. I even tested local proofs of concept with modifications to some of the scripts on the machine in order to progress towards root.
+
+We start off by enumerating the hell out of everything and find a Gogs repo that leaks credentials via commit history. We also find sloppy coding practices and are able to exploit them with the creds we found in order to get a reverse shell. We are jailed, but can upload our own modified versions of scripts we find on the box in order to steal more creds. Logging back into Gogs with one of the new creds we find a private repo with ssh keys and app info that allows us to own root ... if you read the app documentation.
 
 nmaps
 ```
