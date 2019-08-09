@@ -6,7 +6,9 @@ This has been my favorite box so far, mainly due to it's realism. The path to ro
 
 We start off by enumerating the hell out of everything that we're given and find a [Gogs](https://gogs.io) repo that leaks credentials via commit history. We also find sloppy coding practices and are able to exploit them with the creds we found in order to get a reverse shell. We are jailed, but can upload our own modified versions of scripts we find on the box in order to steal more creds. Logging back into Gogs with one of the new creds we find a private repo with ssh keys and app info that allows us to own root ... if you read the app documentation.
 
-nmaps
+###Scan and Basic Recon
+
+I ran an nmap scan on all TCP/UDP ports. The UDP scan came back empty. The TCP scan showed
 ```
 nmap -p- -sT --min-rate=10000 -oN alltcp.nmap 10.10.10.110
 Starting Nmap 7.70 ( https://nmap.org ) at 2019-07-27 12:12 CDT
@@ -19,6 +21,7 @@ PORT     STATE SERVICE
 443/tcp  open  https
 6022/tcp open  x11
 ```
+I then ran a safe script and version scan on the above ports, and it returned the following
 ```
 nmap -sV -sC -p 22,443,6022 -oN found.nmap 10.10.10.110
 Starting Nmap 7.70 ( https://nmap.org ) at 2019-07-27 12:16 CDT
@@ -56,6 +59,12 @@ Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
 Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
 Nmap done: 1 IP address (1 host up) scanned in 45.37 seconds
 ```
+We see https, ssh, and a weird ssh thing I have never seen before on `6022/tcp`. There is also hostname info in the `443/tcp` results; I add `craft.htb` to `/etc/hosts` before enumerating further. From the cert on 443 we get a potential user, `admin@craft.htb`.
+
+I started gobusting/dirb'ing `https://10.10.10.110/` at this point but it kept erroring out. I assume it's user error, but before attemting to fix, I visit `https://10.10.10.110/` in a browser and found the following:
+
+
+
 ### Lessons Learned
 - learned a lot about modules, packages, and `import` in python. This was nice.
 - I read almost every bit of code in this project looking for ways to leak data. It helped out a ton.
