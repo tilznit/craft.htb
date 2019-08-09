@@ -61,11 +61,11 @@ Nmap done: 1 IP address (1 host up) scanned in 45.37 seconds
 ```
 We see https, ssh, and a weird ssh thing I have never seen before on `6022/tcp`. There is also hostname info in the `443/tcp` results; I add `craft.htb` to `/etc/hosts` before enumerating further. From the cert on 443 we get a potential user, `admin@craft.htb`.
 
-I started gobusting/dirb'ing `https://10.10.10.110/` at this point but it kept throwing errors. I assume it's my fault, but before attemting to fix, I visit `https://10.10.10.110/` in a browser and found the following:
+I started gobusting/dirb'ing `https://10.10.10.110/` at this point but it kept throwing errors. I assume it's my fault, but before attemting a fix I visit `https://10.10.10.110/` in a browser and found the following:
 
 ![Screenshot from 2019-07-27 12-14-22](https://user-images.githubusercontent.com/46615118/62792345-af456e80-ba94-11e9-82a7-f3a89d926a46.png)
 
-Clicking the links for api and the git icon return `404 Not Found` errors. Hovering over the links we find 2 new subdomains: `api.craft.htb` and `gogs.craft.htb`. Adding those to `/etc/hosts` gets me past the 404 errors.
+Clicking the links for api and the git icon return `404 Not Found` errors. Hovering over the links I find 2 new subdomains: `api.craft.htb` and `gogs.craft.htb`. Adding those to `/etc/hosts` gets me past the 404 errors.
 
 ![Screenshot from 2019-07-27 12-13-44](https://user-images.githubusercontent.com/46615118/62795233-ec612f00-ba9b-11e9-9d97-f67ed21e043e.png)
 
@@ -86,6 +86,7 @@ gilfoyle
 These are characters from [Silicon Valley](https://en.wikipedia.org/wiki/Silicon_Valley_(TV_series)).
 
 I look through each one's commits and issues. Dinesh raised an issue about a bogus abv value that had interesting data. 
+
 ![Screenshot from 2019-07-30 20-10-33](https://user-images.githubusercontent.com/46615118/62796534-2253e280-ba9f-11e9-94d7-bb909b8b89a7.jpg)
 
 `Can you do it yourself and commit? I'll test it later?` Raises all sorts of red flags for me. I tried the `curl` command and got a `404` as expected. Investigating Dinesh's contributions reveal a great deal.
