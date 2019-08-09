@@ -61,9 +61,13 @@ Nmap done: 1 IP address (1 host up) scanned in 45.37 seconds
 ```
 We see https, ssh, and a weird ssh thing I have never seen before on `6022/tcp`. There is also hostname info in the `443/tcp` results; I add `craft.htb` to `/etc/hosts` before enumerating further. From the cert on 443 we get a potential user, `admin@craft.htb`.
 
-I started gobusting/dirb'ing `https://10.10.10.110/` at this point but it kept erroring out. I assume it's user error, but before attemting to fix, I visit `https://10.10.10.110/` in a browser and found the following:
+I started gobusting/dirb'ing `https://10.10.10.110/` at this point but it kept throwing errors. I assume it's my fault, but before attemting to fix, I visit `https://10.10.10.110/` in a browser and found the following:
 
 ![Screenshot from 2019-07-27 12-14-22](https://user-images.githubusercontent.com/46615118/62792345-af456e80-ba94-11e9-82a7-f3a89d926a46.png)
+
+Clicking the links for api and the git icon return `404 Not Found` errors. Hovering over the links we find 2 new subdomains: `api.craft.htb` and `gogs.craft.htb`. Adding those to `/etc/hosts` gets me past the 404 errors.
+
+
 
 ### Lessons Learned
 - learned a lot about modules, packages, and `import` in python. This was nice.
