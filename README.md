@@ -109,9 +109,13 @@ def post(self):
     return None, 201
 ```   
 
-There was a great [presentation](https://www.youtube.com/watch?v=ZVx2Sxl3B9c) by [Mark Baggett](https://twitter.com/markbaggett?lang=en) about the dangers of this function at the past [Kringlecon](https://holidayhackchallenge.com/2018/).
+There was a great [presentation](https://www.youtube.com/watch?v=ZVx2Sxl3B9c) by [Mark Baggett](https://twitter.com/markbaggett?lang=en) about the dangers of this function at [Kringlecon](https://holidayhackchallenge.com/2018/).
 
-I've found a vulnerability; how do I exploit it? Look no further than commit `10e3ba4f0a`. Here we have a test.py script written by Dinesh that both exposes his credentials and interacts with the api. He removed the creds in a later fix, but [git remembers everything](https://www.google.com/search?client=firefox-b-1-d&q=finding+secrets+in+github).
+I've found a vulnerability; how do I exploit it? Look no further than commit `10e3ba4f0a`. Here we have a `test.py` script written by Dinesh that both exposes his credentials and interacts with the api. He removed the creds in a later fix, but [git remembers everything](https://www.google.com/search?client=firefox-b-1-d&q=finding+secrets+in+github).
+
+```
+dinesh:4aUh0A8PbVjxgd
+```
 
 ### Gaining Access
 
