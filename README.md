@@ -75,7 +75,7 @@ I poke around the api, and found a login point:
 
 ![Screenshot from 2019-07-30 19-38-25](https://user-images.githubusercontent.com/46615118/62795959-9097a580-ba9d-11e9-8821-2610155a7a0d.png)
 
-I need creds. Further exploration of the api reveals nothing obviously exploitable. Lets look at the repo in `gogs.craft.htb`. Logically, on `gogs.craft.htb/explore/users` I found four users:
+I need creds. Further exploration of the api reveals nothing obviously exploitable. Lets look at the repo in `gogs.craft.htb`. Examining the files shows us that we're dealing with a web app created with [flask](https://palletsprojects.com/p/flask/). Logically, on `gogs.craft.htb/explore/users` I found four users:
 
 ```
 administrator
