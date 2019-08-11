@@ -119,7 +119,7 @@ dinesh:4aUh0A8PbVjxgd
 
 ### Gaining Access
 
-I can use the info that Dinesh left exposed. Having downloaded the repo earlier, I can copy and modify the `tests.py` script locally and use it to exploit the `eval` vulnerability. Mark Bagget's talk mentioned earlier gave me an idea of how to attempt the exploit with the `__import__` function.
+Having downloaded the repo earlier, I can copy and modify the `tests.py` script locally and use it to exploit the `eval` vulnerability. Mark Bagget's talk mentioned earlier gave me an idea of how to attempt the exploit with the `__import__` function.
 
 -code-
 
