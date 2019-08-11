@@ -65,7 +65,7 @@ I started gobusting/dirb'ing `https://10.10.10.110/` at this point but it kept t
 
 ![Screenshot from 2019-07-27 12-14-22](https://user-images.githubusercontent.com/46615118/62792345-af456e80-ba94-11e9-82a7-f3a89d926a46.png)
 
-From the cert on 443 we get a potential user, `admin@craft.htb`. Clicking the links for api and the git icon return `404 Not Found` errors. Hovering over the links I find 2 new subdomains: `api.craft.htb` and `gogs.craft.htb`. Adding those to `/etc/hosts` gets me past the 404 errors.
+From the cert on 443 we get a potential user, `admin@craft.htb`. Clicking the links for api and the git icon return `404 Not Found` errors. Hovering over the links I find two new subdomains: `api.craft.htb` and `gogs.craft.htb`. Adding those to `/etc/hosts` gets me past the 404 errors.
 
 ![Screenshot from 2019-07-27 12-13-44](https://user-images.githubusercontent.com/46615118/62795233-ec612f00-ba9b-11e9-9d97-f67ed21e043e.png)
 
