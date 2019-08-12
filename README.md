@@ -183,8 +183,9 @@ This repo was a gold mine of information. I downloaded the repo. In the `.ssh` f
 - learned a lot about modules, packages, and `import` in python. This was nice.
 - settings.py
 - sql - prolly a better query
+- ssh -i
 - I read almost every bit of code in this project looking for ways to leak data. It helped out a ton.
-- I am starting to develop a good methodology for note-taking. A bit of refining is needed, but I like how I can organizedata in cherrytree.
+- I am starting to develop a good methodology for note-taking. A bit of refining is needed, but I like how I can organize data in CherryTree and print out to pdf for a nice report.
 
 <img width="540" alt="Screen Shot 2019-08-09 at 9 18 23 AM" src="https://user-images.githubusercontent.com/46615118/62785900-283dc980-ba87-11e9-8fec-4ace2403efbf.png">
 <img width="540" alt="Screen Shot 2019-08-09 at 9 19 04 AM" src="https://user-images.githubusercontent.com/46615118/62785901-283dc980-ba87-11e9-815c-fdb39dbce1af.png">
