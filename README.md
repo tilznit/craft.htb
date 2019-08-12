@@ -190,8 +190,10 @@ ssh -role root -mode otp root@10.10.10.110
 
 and was able to log in as root. From there `root.txt` was pillaged and the box was done!
 
+![Screenshot from 2019-08-08 22-10-03](https://user-images.githubusercontent.com/46615118/62894522-77e3f580-bd12-11e9-9406-0f1122c47d55.jpg)
 
 
+~fin!
 
 ### Lessons Learned
 - learned a lot about modules, packages, and `import` in python. This was nice.
