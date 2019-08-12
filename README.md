@@ -172,7 +172,7 @@ I checked for more creds by exclusion of `id` and `username`, but none were retu
 
 ![Screenshot from 2019-08-06 21-25-21](https://user-images.githubusercontent.com/46615118/62875090-0000d580-bce8-11e9-975d-278726108585.jpg)
 
-This repo was a gold mine of information. I downloaded the repo. In the `.ssh` folder I found Gilfoyle's public and private `ssh` keys. I tried `ssh -i id-rsa gilfoyle@10.10.10.110`, entered his password when prompted, ans succesffully got into the box. `user.txt` is in the current working directory upon login.
+This repo was a gold mine of information. I downloaded the repo. In the `.ssh` folder I found Gilfoyle's public and private `ssh` keys. I tried `ssh -i id-rsa gilfoyle@10.10.10.110`, entered his password when prompted, and succesfully got into the box. `user.txt` is in the current directory upon login.
 
 ![Screenshot from 2019-08-07 19-20-07](https://user-images.githubusercontent.com/46615118/62876042-b618ef00-bce9-11e9-8303-83d09e35f176.jpg)
 
