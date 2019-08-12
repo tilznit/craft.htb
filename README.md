@@ -170,10 +170,15 @@ sql = "SELECT `id`,`username`,`password` FROM `user` WHERE `id` != 1 AND `id` !=
 ```
 I checked for more creds by exclusion of `id` and `username`, but none were returned. I tried ssh'ing into the box with the `gilfoyle` creds, but again was denied entry. Trying those creds on `gogs.craft.htb`, I was able to log in, and immediatly saw a private repo named `craft-infra`.
 
+![Screenshot from 2019-08-06 21-25-21](https://user-images.githubusercontent.com/46615118/62875090-0000d580-bce8-11e9-975d-278726108585.jpg)
+
+This repo was a gold mine of information. I downloaded the repo. In the `.ssh` folder I found Gilfoyle's public and private `ssh` keys. I tried `ssh -i id-rsa gilfoyle@10.10.10.110`, entered his password when prompted, ans succesffully got into the box.
+
 
 ### Lessons Learned
 - learned a lot about modules, packages, and `import` in python. This was nice.
 - settings.py
+- sql - prolly a better query
 - I read almost every bit of code in this project looking for ways to leak data. It helped out a ton.
 - I am starting to develop a good methodology for note-taking. A bit of refining is needed, but I like how I can organizedata in cherrytree.
 
