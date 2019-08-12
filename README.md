@@ -135,7 +135,7 @@ And it worked!
 
 ![Screenshot from 2019-08-04 21-53-34](https://user-images.githubusercontent.com/46615118/62869104-c6769d00-bcdc-11e9-94b0-a23006f13ca1.jpg)
 
-But, I couldn't do much with this shell. Many of the commands on a normal linux install were missing. In the `/root` folder I found a hidden `docker` folder, thus I am probably in a container. I found the `settings.py` file, which was missing in the repo, due to being listed in the `.gitignore` file. The file contained the database user creds: `craft:qLGock6G2j75O`, but I was unable to use them anywhere, or for that matter, use the `settings.py` file for an advantage. 
+But, I couldn't do much with this shell. Many of the commands on a normal linux install were missing. In the `/root` folder I found a hidden `docker` folder, thus I am probably in a container. I found the `settings.py` file, which was missing in the repo due to it being listed in the `.gitignore` file. The file contained the database user creds: `craft:qLGock6G2j75O`, but I was unable to use them anywhere, or for that matter, use the `settings.py` file for an advantage. 
 
 I'm interested in seeing other folks' write-ups to see if they were able to use the `setings.py` file to gain access to the box.
 
