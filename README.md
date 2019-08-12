@@ -178,12 +178,27 @@ This repo was a gold mine of information. I downloaded the repo. In the `.ssh` f
 
 ### Privesc
 
+In the private repo ther is a folder named vault that has information regarding the use of the (not suprisingly named) [Vault](https://www.vaultproject.io/docs/) app. Vault keeps your secrets safe; not so much when the mechanics hiding those secrets are availible to unintended users.
+
+The `secrets.sh` script enables root login using `ssh` via one time password (OTP). In reading the [documentation](https://www.vaultproject.io/docs/secrets/ssh/one-time-ssh-passwords.html), it looks like if this backdoor is enabled all you have to do is `ssh` into the box using `root` and the OTP.
+
+From the `gilfoyle` ssh session, I tried
+
+```bash
+ssh -role root -mode otp root@10.10.10.110
+```
+
+and was able to log in as root. From there `root.txt` was pillaged and the box was done!
+
+
+
 
 ### Lessons Learned
 - learned a lot about modules, packages, and `import` in python. This was nice.
 - settings.py
 - sql - prolly a better query
 - ssh -i
+- secrets.sh
 - I read almost every bit of code in this project looking for ways to leak data. It helped out a ton.
 - I am starting to develop a good methodology for note-taking. A bit of refining is needed, but I like how I can organize data in CherryTree and print out to pdf for a nice report.
 
