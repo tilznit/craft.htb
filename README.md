@@ -135,17 +135,25 @@ And it worked!
 
 ![Screenshot from 2019-08-04 21-53-34](https://user-images.githubusercontent.com/46615118/62869104-c6769d00-bcdc-11e9-94b0-a23006f13ca1.jpg)
 
-But, I couldn't do much with this shell. Many of the commands on a normal linux install were missing. In the `/root` folder I found a hidden docker file; I am probably in a container. I found I could run the `dbtest.py` file, seen in the above screenshot. That turned out to be super-convienient. If you had looked through the entire repo earlier, you would have seen the `models.py` file in the `craft_api/database` folder.
+But, I couldn't do much with this shell. Many of the commands on a normal linux install were missing. In the `/root` folder I found a hidden `docker` folder, thus I am probably in a container. I found the `settings.py` file, which was missing in the repo, due to being listed in the `.gitignore` file. The file contained the database user creds: `craft:qLGock6G2j75O`, but I was unable to use them anywhere, or for that matter, use the `settings.py` file for an advantage. 
+
+I'm interested in seeing other folks' write-ups to see if they were able to use the `setings.py` file to gain access to the box.
+
+I found I could run the `dbtest.py` file, seen in the above screenshot. That turned out to be super-convienient. If you had looked through the entire repo earlier, you would have seen the `models.py` file in the `craft_api/database` folder.
 
 -code snippet of models.py-
 
 We can see from the [url](https://flask-sqlalchemy.palletsprojects.com/en/2.x/quickstart/#simple-relationships) in the comments that this code creates a database with the tables `brew` and `user`. I copied and modified my local copy of `dbtest.py` to try and steal creds from the `user` table. I mentioned earlier that most of the normal linux commads were missing, but `wget` was still available. Nice. I served my modified file to the craft box with `python -m SimpleHTTPServer 10000` and used `wget` to download.
 
+The first thing I tried was
+
 ```python
 sql = "SELECT * FROM `user`
 ```
 
-Gave me Dinesh's creds, which we already have. Surely this wasn't only creds avaiable in this database. Why was this the case? I even tried adding `LIMIT 2` and it still only leaked Dinesh. I have Dinesh's `id` in the database, I tried excluding that `id` with the below query and got `ebachman`'s creds.
+**really?**
+
+Gave me Dinesh's creds, which we already have. Surely this wasn't the only creds avaiable in this database. Why was this the case? I even tried adding `LIMIT 2` and it still only leaked Dinesh. I have Dinesh's `id` in the database, I tried excluding that `id` with the below query and got `ebachman`'s creds.
 
 ```python
 sql = "SELECT `id`,`username`,`password` FROM `user` WHERE `id` != 1"
@@ -153,14 +161,14 @@ sql = "SELECT `id`,`username`,`password` FROM `user` WHERE `id` != 1"
 # ebachman:llJ77D8QFkLPQB
 ```
 
-I tried this credential in the api and on gogs.craft.htb, but nothing interesting was noted. I also tried ssh'ing into the box with those creds, but was denied entry. I looked for more credentials in the database. This next query returned `gilfoyle`'s creds
+I tried this credential in the api and on `gogs.craft.htb`, but nothing interesting was noted. I also tried ssh'ing into the box with those creds, but was denied entry. I looked for more credentials in the database. This next query returned `gilfoyle`'s creds
 
 ```python
 sql = "SELECT `id`,`username`,`password` FROM `user` WHERE `id` != 1 AND `id` != 4"
 
 # gilfoyle:ZEU3N8WNM2rh4T
 ```
-I checked for more creds by exclusion of `id` and `username`, but none were returned.
+I checked for more creds by exclusion of `id` and `username`, but none were returned. I tried ssh'ing into the box with the `gilfoyle` creds, but again was denied entry. Trying those creds on `gogs.craft.htb`, I was able to log in, and immediatly saw a private repo named `craft-infra`.
 
 
 ### Lessons Learned
