@@ -2,7 +2,7 @@
 ### Write up for the craft machine from hackthebox
 <img width="302" alt="Screen Shot 2019-08-09 at 9 20 32 AM" src="https://user-images.githubusercontent.com/46615118/62785902-283dc980-ba87-11e9-9973-13ed7359cdf5.png">
 
-This has been my favorite box so far, mainly due to it's realism. The path to root was logical once you understood how the app worked and how to interact with it in order to get the desired output. I tested local proofs of concept with modifications to some of the scripts on the machine in order to progress towards root.
+This has been my favorite box so far, mainly due to it's realism. The path to root was straightforward once you understood how the app worked and how to interact with it in order to get the desired output. I tested local proofs of concept with modifications to some of the scripts on the machine in order to progress towards root.
 
 We start off by visiting the https service on the box and find a public [Gogs](https://gogs.io) repo that leaks credentials via commit history. In the repo we also find sloppy coding practices and are able to exploit them with the creds we found in order to get a reverse shell. We are jailed, but can upload our own modified versions of scripts we find in the repo in order to steal more creds. Logging back into Gogs with one of the new creds we find a private repo with ssh keys, a backdoor, and app info that allows us to own root.
 
@@ -75,7 +75,7 @@ I poked around the api, and found a login point:
 
 ![Screenshot from 2019-07-30 19-38-25](https://user-images.githubusercontent.com/46615118/62795959-9097a580-ba9d-11e9-8821-2610155a7a0d.png)
 
-Further exploration of the api revealed nothing obviously exploitable. I then looked at the repo in `gogs.craft.htb`. Examining the files shows us that we're dealing with a web app created with [flask](https://palletsprojects.com/p/flask/). Logically, on `gogs.craft.htb/explore/users` I found four users:
+Further exploration of the api revealed nothing obviously vulnerable. I then looked at the repo in `gogs.craft.htb`. Examining the files shows us that we're dealing with a web app created with [flask](https://palletsprojects.com/p/flask/). Logically, on `gogs.craft.htb/explore/users` I found four users:
 
 ```
 administrator
@@ -153,7 +153,7 @@ sql = "SELECT * FROM `user`
 
 **really?**
 
-Gave me Dinesh's creds, which we already have. Surely this wasn't the only creds avaiable in this database. Why was this the case? I even tried adding `LIMIT 2` and it still only leaked Dinesh. I have Dinesh's `id` in the database, I tried excluding that `id` with the below query and got `ebachman`'s creds.
+Gave me Dinesh's creds, which we already have. Surely these weren't the only creds avaiable in this database. Why was this the case? I even tried adding `LIMIT 2` and it still only leaked Dinesh. I have Dinesh's `id` in the database, I tried excluding that `id` with the below query and got `ebachman`'s creds.
 
 ```python
 sql = "SELECT `id`,`username`,`password` FROM `user` WHERE `id` != 1"
