@@ -145,7 +145,7 @@ We can see from the [url](https://flask-sqlalchemy.palletsprojects.com/en/2.x/qu
 sql = "SELECT * FROM `user`
 ```
 
-Gave me Dinesh's creds, which we already have. Surely this wasn't only creds avaiable in this database. Why was this the case?I even tried adding `LIMIT 2` and it still only leaked Dinesh. I have Dinesh's `id` in the database, I tried excluding that `id` with the below query and got `ebachman`'s creds.
+Gave me Dinesh's creds, which we already have. Surely this wasn't only creds avaiable in this database. Why was this the case? I even tried adding `LIMIT 2` and it still only leaked Dinesh. I have Dinesh's `id` in the database, I tried excluding that `id` with the below query and got `ebachman`'s creds.
 
 ```python
 sql = "SELECT `id`,`username`,`password` FROM `user` WHERE `id` != 1"
