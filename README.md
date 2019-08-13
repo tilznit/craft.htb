@@ -237,7 +237,7 @@ and was able to log in as root. From there I found `root.txt` in the current wor
 - Not being able to use python everyday, I (re)learned a lot about modules, packages, and `__import__` in python. This was nice.
 - I mentioned earlier that I thought that `settings.py` was going to be integral in solving this box, but it pretty much wasn't for me. If anyone else was able to use it, or if I'm missing something obvious (which is highly likely) please let me know.
 - My sql ... there is probably a better query out there that would list all of the creds other than `dinesh`. I'll test locally for sure, but am interested to see other people's queries. If not, why was only one row returned at a time? I am unable to understand the reason if it exists in the flask or sqlalchemy code.
-- I ssh every day. However I rarely have to use keys to auth. Learning about `ssh -i` was great.
+- I use `ssh` every day. However, I rarely have to "manually" use keys to auth. Learning about `ssh -i` was great.
 - I am starting to develop a good methodology for note-taking. A bit of refining is needed, but I like how I can organize data in CherryTree and print out to pdf for a nice report.
 
 <img width="540" alt="Screen Shot 2019-08-09 at 9 18 23 AM" src="https://user-images.githubusercontent.com/46615118/62785900-283dc980-ba87-11e9-8fec-4ace2403efbf.png">
