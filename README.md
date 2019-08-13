@@ -175,7 +175,7 @@ class User(db.Model):
         self.password = password
 ```
 
-We can see from the [url](https://flask-sqlalchemy.palletsprojects.com/en/2.x/quickstart/#simple-relationships) in the comments that this code creates a database with the tables `brew` and `user`. I copied and modified my local copy of `dbtest.py` to try and steal creds from the `user` table. I mentioned earlier that most of the normal linux commads were missing, but `wget` was still available. Nice. I served my modified file to the craft box with `python -m SimpleHTTPServer 10000` and used `wget` to download.
+We can see from the [url](https://flask-sqlalchemy.palletsprojects.com/en/2.x/quickstart/#simple-relationships) in the comments that this code creates a database with the tables `brew` and `user`. I copied and modified my local copy of `dbtest.py` to try and steal creds from the `user` table. I mentioned earlier that most of the normal linux commads were missing, but `wget` was still available. I served my modified file to the craft box with `python -m SimpleHTTPServer 10000` and used `wget` to download.
 
 The first thing I tried was
 
@@ -251,6 +251,7 @@ Here is the "proof of concept" I developed locally on my machine to give me an i
 #!/usr/bin/python
 
 # when prompted, enter: __import__("os").system("/bin/sh/")
+# try other things to see what works and what doesn't
 
 def post(self):
     """
