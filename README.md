@@ -141,7 +141,39 @@ I'm interested in seeing other folks' write-ups to see if they were able to use 
 
 I found I could run the `dbtest.py` file, seen in the above screenshot. That turned out to be super-convienient. If you had looked through the entire repo earlier, you would have seen the `models.py` file in the `craft_api/database` folder.
 
--code snippet of models.py-
+```python
+# The examples in this file come from the Flask-SQLAlchemy documentation
+# For more information take a look at:
+# http://flask-sqlalchemy.pocoo.org/2.1/quickstart/#simple-relationships
+
+from datetime import datetime
+from craft_api.database import db
+
+class Brew(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    brewer = db.Column(db.String(80))
+    name = db.Column(db.Text)
+    style = db.Column(db.Text)
+    abv = db.Column(db.Numeric)
+
+    def __init__(self, brewer, name, style, abv):
+        self.brewer = brewer
+        self.name = name
+        self.style = style
+        self.abv = abv
+
+    def __repr__(self):
+        return '<Brew %r>' % self.name
+
+class User(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String(45))
+    password = db.Column(db.String(80))
+
+    def __init__(self, username, password):
+        self.username = username
+        self.password = password
+```
 
 We can see from the [url](https://flask-sqlalchemy.palletsprojects.com/en/2.x/quickstart/#simple-relationships) in the comments that this code creates a database with the tables `brew` and `user`. I copied and modified my local copy of `dbtest.py` to try and steal creds from the `user` table. I mentioned earlier that most of the normal linux commads were missing, but `wget` was still available. Nice. I served my modified file to the craft box with `python -m SimpleHTTPServer 10000` and used `wget` to download.
 
