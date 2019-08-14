@@ -181,7 +181,7 @@ The first thing I tried was
 sql = "SELECT * FROM `user`
 ```
 
-**really?**
+**confirm output**
 
 Gave me Dinesh's creds, which we already have. Surely these weren't the only creds avaiable in this database. Why was this the case? I even tried adding `LIMIT 2` and it still only leaked Dinesh. I have Dinesh's `id` in the database, I tried excluding that `id` with the below query and got `ebachman`'s creds.
 
@@ -208,7 +208,7 @@ This repo was a gold mine of information. I downloaded the repo. In the `.ssh` f
 
 ### Privesc
 
-In the private repo ther is a folder named `vault` that has information regarding the use of the (not suprisingly named) [Vault](https://www.vaultproject.io/docs/) app. Vault keeps your secrets safe; not so much when the mechanics hiding those secrets are availible to unintended users.
+In the private repo there is a folder named `vault` that has information regarding the use of the (not suprisingly named) [Vault](https://www.vaultproject.io/docs/) app. Vault keeps your secrets safe; not so much when the mechanics hiding those secrets are availible to unintended users.
 
 The `secrets.sh` script enables root login using `ssh` via one time password (OTP). In reading the [documentation](https://www.vaultproject.io/docs/secrets/ssh/one-time-ssh-passwords.html), it looks like if this backdoor is enabled all you have to do is `ssh` into the box using `root` and the OTP.
 
