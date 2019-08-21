@@ -135,7 +135,7 @@ And it worked!
 
 But, I couldn't do much with this shell. Many of the commands on a normal linux install were missing. In the `/root` folder I found a hidden `docker` folder, thus I am probably in a container. I found the `settings.py` file, which was missing in the repo due to it being listed in the `.gitignore` file. The file contained the database user creds: `craft:qLGock6G2j75O`, but I was unable to use them anywhere, or for that matter, use the `settings.py` file for an advantage. 
 
-I'm interested in seeing other folks' write-ups to see if they were able to use the `setings.py` file to gain access to the box.
+I'm interested in seeing other folks' write-ups to see if they were able to use the `setings.py` file to their advantage on the box.
 
 I found I could run the `dbtest.py` file, seen in the above screenshot. That turned out to be super-convienient. If you had looked through the entire repo earlier, you would have seen the `models.py` file in the `craft_api/database` folder.
 
