@@ -181,8 +181,6 @@ The first thing I tried was
 sql = "SELECT * FROM `user`
 ```
 
-**confirm output**
-
 Gave me Dinesh's creds, which we already have. Surely these weren't the only creds avaiable in this database. Why was this the case? I even tried adding `LIMIT 2` and it still only leaked Dinesh. I have Dinesh's `id` in the database, I tried excluding that `id` with the below query and got `ebachman`'s creds.
 
 ```python
